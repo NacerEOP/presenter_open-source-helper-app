@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'View/app-init.dart';
 
 void main() {
   runApp(const MyApp());
@@ -30,7 +31,7 @@ class MyApp extends StatelessWidget {
         // tested with just a hot reload.
         colorScheme: .fromSeed(seedColor: Color.fromARGB(255, 72, 255, 0)),
       ),
-      home: const MyHomePage(title: 'Presenter'),
+      home: const AppInit(title: 'Presenter'),
     );
   }
 }
