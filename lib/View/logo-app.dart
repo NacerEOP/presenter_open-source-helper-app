@@ -9,6 +9,6 @@ class LogoApp extends StatefulWidget {
 class _LogoApp extends State<LogoApp> {
   @override
   Widget build(BuildContext context) {
-    return Text("This is the logo");
+    return Image(image: AssetImage('assets/images/PresenterLogo.png'));
   }
 }

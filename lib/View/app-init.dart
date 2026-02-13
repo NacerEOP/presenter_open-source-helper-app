@@ -29,7 +29,7 @@ class _AppInit extends State<AppInit> {
         // the App.build method, and use it to set our appbar title.
         title: Text(widget.title),
       ),
-      body: Center(child: const LogoApp()),
+      body: Center(child: SizedBox(width: 400, child: const LogoApp())),
     );
   }
 }
