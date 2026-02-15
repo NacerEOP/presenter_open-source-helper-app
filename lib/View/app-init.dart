@@ -14,14 +14,6 @@ class AppInit extends StatefulWidget {
 class _AppInit extends State<AppInit> {
   final GlobalKey<OpacityAnimState> _opacityKey = GlobalKey<OpacityAnimState>();
 
-  void _fadeIn() {
-    _opacityKey.currentState?.playAnim();
-  }
-
-  void _fadeOut() {
-    _opacityKey.currentState?.playAnimReverse();
-  }
-
   Future<void> _startFadeLoop() async {
     while (mounted) {
       // important to stop when widget is disposed
