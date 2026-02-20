@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
 
-class LogoApp extends StatefulWidget {
+class LogoApp extends StatelessWidget {
   const LogoApp({super.key});
-  @override
-  State<LogoApp> createState() => _LogoApp();
-}
 
-class _LogoApp extends State<LogoApp> {
   @override
   Widget build(BuildContext context) {
-    return Image(image: AssetImage('assets/images/PresenterLogo.png'));
+    return Image.asset(
+      'assets/images/PresenterLogo.png',
+      color: Theme.of(context).colorScheme.onSurface,
+      colorBlendMode: BlendMode.srcIn,
+    );
   }
 }
