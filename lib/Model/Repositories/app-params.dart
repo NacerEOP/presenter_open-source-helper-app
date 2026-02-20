@@ -35,4 +35,8 @@ class AppParamsRepository {
   Future<void> setOnboardingSeen(bool value) async {
     await _prefs.setBool(_onboardingKey, value);
   }
+
+  Future<void> LoadAll() async {
+    await Future.wait([getTheme(), getLanguage(), getOnboardingSeen()]);
+  }
 }

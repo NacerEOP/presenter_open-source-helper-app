@@ -5,21 +5,31 @@ import 'Model/Repositories/app-params.dart';
 import './ViewModel/appearance.dart';
 import './ViewModel/states.dart';
 import 'View/onboarding.dart';
-
+import 'View/home.dart';
 import 'View/app-init.dart';
 // import 'View/home.dart';
 // import 'View/login.dart';
 // import 'View/settings.dart';
 
 final States states = States();
+final prefs = PreferencesService();
+final repo = AppParamsRepository(prefs);
+final themeVM = ThemeViewModel(repo);
+
+Future<void> boot() async {
+  await repo.LoadAll();
+
+  await Future.delayed(const Duration(seconds: 2));
+
+  final onboardSeen = await repo.getOnboardingSeen();
+  states.go(onboardSeen ? 'home' : 'onboarding');
+}
 
 void main() {
-  final prefs = PreferencesService();
-  final repo = AppParamsRepository(prefs);
-  final themeVM = ThemeViewModel(repo);
+  boot();
 
   themeVM.load();
-  themeVM.setMode(ThemeMode.dark);
+  themeVM.setMode(ThemeMode.system);
 
   runApp(MyApp(themeVM));
 }
@@ -34,7 +44,7 @@ class MyApp extends StatelessWidget {
     final pages = <String, Widget Function()>{
       'init': () => const AppInit(title: 'Presenter'),
       'onboarding': () => const OnboardingScreen(),
-      // 'home': () => const HomePage(),
+      'home': () => const HomeScreen(),
       // 'login': () => const LoginPage(),
       // 'settings': () => const SettingsPage(),
     };
