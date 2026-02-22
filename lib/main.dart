@@ -25,10 +25,12 @@ Future<void> boot() async {
   states.go(onboardSeen ? 'home' : 'onboarding');
 }
 
-void main() {
-  boot();
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
 
-  themeVM.load();
+  await boot();
+
+  await themeVM.load();
   themeVM.setMode(ThemeMode.system);
 
   runApp(MyApp(themeVM));
